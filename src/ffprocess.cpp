@@ -26,10 +26,10 @@ FFprocess::FFprocess(QWidget *parent) :
     //
     /*-->>connect(ffmpeg, SIGNAL(finished(int)), this,SLOT(encoding_finished()));<<--*/
     connect(ffmpeg, &QProcess::readyReadStandardOutput,
-            this, &FFprocess::ffmpegReadStandardOutput);
+            this, &FFprocess::ffmpeg_proc_output);
     //connect(ffprobe, SIGNAL(finished(int)), this, SLOT(ffprobe_finished()));//<-
     connect(ffprobe, &QProcess::readyReadStandardOutput,
-            this, &FFprocess::ffprobeReadStandardOutput);//ffprobe data
+            this, &FFprocess::ffprobe_proc_output);//ffprobe data
     //-------------------------------------------------------------------------
 
     //set channel mode
@@ -103,7 +103,7 @@ FFprocess::~FFprocess()
     delete ffplay;
 }
 
-void FFprocess::ffmpegReadStandardOutput()//complete!
+void FFprocess::ffmpeg_proc_output()//complete!
 {
     //ffmpeg process' readyReadStandardOutput implementation
     ff_output = (ffmpeg->readAllStandardOutput());//single line stats
@@ -115,7 +115,7 @@ void FFprocess::ffmpegReadStandardOutput()//complete!
                 ui->ffprocessOutputView->verticalScrollBar()->maximum());
 }
 
-void FFprocess::ffprobeReadStandardOutput()
+void FFprocess::ffprobe_proc_output()
 {
     //ffprobe process' readyReadStandardOutput implementation
     ffprobe_output.append(ffprobe->readAllStandardOutput());

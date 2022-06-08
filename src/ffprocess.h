@@ -23,8 +23,8 @@ private:
     Ui::FFprocess *ui;
 
 private Q_SLOTS:
-    void ffmpegReadStandardOutput();
-    void ffprobeReadStandardOutput();
+    void ffmpeg_proc_output();
+    void ffprobe_proc_output();
     /*void display_ffmpeg_output();
     void display_ffprobe_output();*/
     //encoding_finished()
