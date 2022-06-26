@@ -58,6 +58,7 @@ set(PROJECT_SOURCES
         src/ffprocess.h
         src/ffprocess.cpp
         src/ffprocess.ui
+        misc/
         LICENSE
         README.md
 )
@@ -79,3 +80,36 @@ else()
 endif()
 
 target_link_libraries(Barium PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+# Get the current working branch
+execute_process(
+COMMAND git rev-parse --abbrev-ref HEAD
+WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+OUTPUT_VARIABLE GIT_BRANCH
+OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+# Get the latest abbreviated commit hash of the working branch
+execute_process(
+COMMAND git log -1 --format=%h
+WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+OUTPUT_VARIABLE GIT_COMMIT_HASH
+OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+# Get the latest commit's SHA1
+execute_process(
+COMMAND  git rev-parse --verify HEAD
+WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+OUTPUT_VARIABLE GIT_SHA1
+OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+add_definitions("-DGIT_COMMIT_HASH=${GIT_COMMIT_HASH}")
+add_definitions("-DGIT_BRANCH=${GIT_BRANCH}")
+add_definitions("-DGIT_SHA1=${GIT_SHA1}")
+
+configure_file(
+  ${CMAKE_SOURCE_DIR}/version.h.in
+  ${CMAKE_BINARY_DIR}/misc/version.h
+)

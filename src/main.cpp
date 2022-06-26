@@ -9,15 +9,14 @@ int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 
-
     QApplication app(argc, argv);
     MainWindow window;
 
-    window.setWindowTitle("Barium");
+    window.setWindowTitle("Barium v"+compiled_date+"-"+git_hash_str);
     window.setWindowIcon(QIcon(":/images/resources/Logo1.png"));
     app.setOrganizationName("The Barium Team");
     app.setApplicationName("Barium");
-    app.setApplicationVersion(VERSION_STRING);
+    app.setApplicationVersion(compiled_date+"-"+git_hash_str);
 
     window.show();
     return app.exec();

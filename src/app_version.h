@@ -25,10 +25,19 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
+#include "misc/version.h"
+#include <QDate>
 
 #define VERSION_STRING "0.8.9"
 #define VERSION_INT 000809
 
+
+extern const char *kGitHash;
+
+QDateTime date{QDateTime::currentDateTime()};
+QString compiled_date{date.toString("yyyy.MM.dd")};
+QByteArray formattedTimeMsg{compiled_date.toLocal8Bit()};
+
+QString git_hash_str{GIT_COMMIT_HASH};
 
 #endif // APP_VERSION_H
