@@ -35,12 +35,14 @@ private Q_SLOTS:
     void select_container();
     void select_aspect_rat();
     void select_vid_fps();
+    void select_encoder_level();
     void select_motion_est();
     void vid_codec_interface();
 
 private:
     QString preset{"-preset"};
     QString enc_preset{};
+    QString enc_level{};
     QString crf_value{};
     QString pr_value{};
     QString video_codec{};

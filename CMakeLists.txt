@@ -58,9 +58,9 @@ set(PROJECT_SOURCES
         src/ffprocess.h
         src/ffprocess.cpp
         src/ffprocess.ui
-        misc/
         LICENSE
         README.md
+        misc/
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

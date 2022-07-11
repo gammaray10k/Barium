@@ -28,6 +28,8 @@ VideoUI::VideoUI(QWidget *parent) :
             ui->videoRFSpinBox, &QSpinBox::setValue);
     connect(ui->videoEncoderDial, &QDial::valueChanged,
             this, &VideoUI::encoder_preset);
+    connect(ui->videoEncLevelSlider, &QSlider::valueChanged,
+            this, &VideoUI::select_encoder_level);
     //-------------------------------------------------------------------------
     connect(ui->videoCodecBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &VideoUI::select_vid_codec);
@@ -132,6 +134,20 @@ VideoUI::VideoUI(QWidget *parent) :
     //video groupbox
     ui->videoGroupBox->setTitle(tr("Video"));
     ui->videoGroupBox->setAlignment(Qt::AlignLeft);
+
+    //video endoder level
+    ui->videoEncLevelLabel->setText(tr("Encoder Level"));
+    ui->videoEncLevelSlider->setRange(0, 20);
+    ui->videoEncLevelSlider->setTickPosition(QSlider::TicksBelow);
+    ui->videoEncLevelSlider->setSingleStep(1);
+    ui->videoEncLevelSlider->setValue(0);//default value for the encoderlevel slider
+    ui->videoEncLevelSlider->setSliderPosition(0);
+    ui->videoEncLevelSlider->setToolTip(tr("Encoder Level Selector"));
+    ui->videoEncLevelDisplay->setAlignment(Qt::AlignCenter);
+    ui->videoEncLevelDisplay->setText(tr("auto")); //default value for encoder level
+    ui->videoEncLevelDisplay->setFixedWidth(35);
+    ui->videoEncLevelDisplay->setStyleSheet("QLabel { background-color : white }");
+    ui->videoEncLevelDisplay->setStyleSheet("QLabel { border : 0.5px solid black }");
 
 }
 
@@ -354,6 +370,432 @@ void VideoUI::encoder_preset()
     //str.setNum(ui->videoEncoderDial->value()));
 }
 
+//initializing selected encoder level
+void VideoUI::select_encoder_level()
+{
+    //x264 settings
+    if(ui->videoEncLevelSlider->value() == 0 &&
+            ui->videoEncLevelSlider->sliderPosition() == 0)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            //default auto setting for ffmpeg
+            ui->videoEncLevelDisplay->setText("auto");
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            //default auto setting for ffmpeg
+            ui->videoEncLevelDisplay->setText("auto");
+        }
+        else
+        {
+            //every other codec
+            //default auto setting for ffmpeg
+            ui->videoEncLevelDisplay->setText("auto");
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 1 &&
+            ui->videoEncLevelSlider->sliderPosition() == 1)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("1");
+            enc_level = "1";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("1");
+            enc_level = "1";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("1");
+            enc_level = "1";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 2 &&
+            ui->videoEncLevelSlider->sliderPosition() == 2)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("1b");
+            enc_level = "1b";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("2");
+            enc_level = "2";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("1b");
+            enc_level = "1b";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 3 &&
+            ui->videoEncLevelSlider->sliderPosition() == 3)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("1.1");
+            enc_level = "1.1";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("2.1");
+            enc_level = "2.1";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("1.1");
+            enc_level = "1.1";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 4 &&
+            ui->videoEncLevelSlider->sliderPosition() == 4)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("1.2");
+            enc_level = "1.2";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("3");
+            enc_level = "3";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("1.2");
+            enc_level = "1.2";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 5 &&
+            ui->videoEncLevelSlider->sliderPosition() == 5)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("1.3");
+            enc_level = "1.3";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("3.1");
+            enc_level = "3.1";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("1.3");
+            enc_level = "1.3";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 6 &&
+            ui->videoEncLevelSlider->sliderPosition() == 6)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("2");
+            enc_level = "2";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("4");
+            enc_level = "4";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("2");
+            enc_level = "2";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 7 &&
+            ui->videoEncLevelSlider->sliderPosition() == 7)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("2.1");
+            enc_level = "2.1";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("4.1");
+            enc_level = "4.1";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("2.1");
+            enc_level = "2.1";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 8 &&
+            ui->videoEncLevelSlider->sliderPosition() == 8)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("2.2");
+            enc_level = "2.2";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("5");
+            enc_level = "5";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("2.2");
+            enc_level = "2.2";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 9 &&
+            ui->videoEncLevelSlider->sliderPosition() == 9)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("3");
+            enc_level = "3";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("5.1");
+            enc_level = "5.1";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("3");
+            enc_level = "3";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 10 &&
+            ui->videoEncLevelSlider->sliderPosition() == 10)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("3.1");
+            enc_level = "3.1";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("5.2");
+            enc_level = "5.2";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("3.1");
+            enc_level = "3.1";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 11 &&
+            ui->videoEncLevelSlider->sliderPosition() == 11)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("3.2");
+            enc_level = "3.2";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("6");
+            enc_level = "6";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("3.2");
+            enc_level = "3.2";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 12 &&
+            ui->videoEncLevelSlider->sliderPosition() == 12)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("4");
+            enc_level = "4";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("6.1");
+            enc_level = "6.1";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("4");
+            enc_level = "4";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 13 &&
+            ui->videoEncLevelSlider->sliderPosition() == 13)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("4.1");
+            enc_level = "4.1";
+        }
+        //x265
+        else if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoEncLevelDisplay->setText("6.2");
+            enc_level = "6.2";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("4.1");
+            enc_level = "4.1";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 14 &&
+            ui->videoEncLevelSlider->sliderPosition() == 14)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("4.2");
+            enc_level = "4.2";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("4.2");
+            enc_level = "4.2";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 15 &&
+            ui->videoEncLevelSlider->sliderPosition() == 15)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("5");
+            enc_level = "5";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("5");
+            enc_level = "5";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 16 &&
+            ui->videoEncLevelSlider->sliderPosition() == 16)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("5.1");
+            enc_level = "5.1";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("5.1");
+            enc_level = "5.1";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 17 &&
+            ui->videoEncLevelSlider->sliderPosition() == 17)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("5.2");
+            enc_level = "5.2";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("5.2");
+            enc_level = "5.2";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 18 &&
+            ui->videoEncLevelSlider->sliderPosition() == 18)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("6");
+            enc_level = "6";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("6");
+            enc_level = "6";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 19 &&
+            ui->videoEncLevelSlider->sliderPosition() == 19)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("6.1");
+            enc_level = "6.1";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("6.1");
+            enc_level = "6.1";
+        }
+    }
+    if(ui->videoEncLevelSlider->value() == 20 &&
+            ui->videoEncLevelSlider->sliderPosition() == 20)
+    {
+        //x264
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoEncLevelDisplay->setText("6.2");
+            enc_level = "6.2";
+        }
+        else
+        {
+            //every other codec
+            ui->videoEncLevelDisplay->setText("6.2");
+            enc_level = "6.2";
+        }
+    }
+}
+
 //initalizing selected crf value
 void VideoUI::select_crf()
 {
@@ -439,6 +881,9 @@ void VideoUI::vid_codec_interface()
         ui->videoLQLabel->setText(tr("Low Quality |"));
         ui->videoHQLabel->setText(tr("| High Quality"));
         ui->videoEncoderDial->setRange(0, 9);
+        ui->videoEncLevelSlider->setRange(0,20);
+        ui->videoEncLevelSlider->setValue(0);
+        ui->videoEncLevelSlider->setSliderPosition(0);
     }
     else if(ui->videoCodecBox->currentIndex() == 3)
     {
@@ -452,6 +897,9 @@ void VideoUI::vid_codec_interface()
         ui->videoLQLabel->setText(tr("Low Quality |"));
         ui->videoHQLabel->setText(tr("| High Quality"));
         ui->videoEncoderDial->setRange(0, 9);
+        ui->videoEncLevelSlider->setRange(0,13);
+        ui->videoEncLevelSlider->setValue(0);
+        ui->videoEncLevelSlider->setSliderPosition(0);
     }
     else if(ui->videoCodecBox->currentIndex() == 4)
     {
@@ -467,6 +915,9 @@ void VideoUI::vid_codec_interface()
         ui->videoHQLabel->setText(tr("| High Quality"));
         ui->videoEncoderDial->setRange(0, 9);
         video_qs_value.setNum(ui->videoRFSlider->value());//setting qscale value
+        ui->videoEncLevelSlider->setRange(0,20);
+        ui->videoEncLevelSlider->setValue(0);
+        ui->videoEncLevelSlider->setSliderPosition(0);
     }
     else if(ui->videoCodecBox->currentIndex() == 5)
     {
@@ -481,6 +932,9 @@ void VideoUI::vid_codec_interface()
         ui->videoHQLabel->setText(tr("| High Quality"));
         ui->videoEncoderDial->setRange(0, 9);
         video_br_value = "0";
+        ui->videoEncLevelSlider->setRange(0,20);
+        ui->videoEncLevelSlider->setValue(0);
+        ui->videoEncLevelSlider->setSliderPosition(0);
     }
     else if(ui->videoCodecBox->currentIndex() == 6)
     {
@@ -497,6 +951,9 @@ void VideoUI::vid_codec_interface()
         ui->videoHQLabel->setText(tr("| Low Quality"));
         ui->videoEncoderDial->setRange(0, 9);
         video_qs_value.setNum(ui->videoRFSlider->value());//setting qscale value
+        ui->videoEncLevelSlider->setRange(0,20);
+        ui->videoEncLevelSlider->setValue(0);
+        ui->videoEncLevelSlider->setSliderPosition(0);
     }
     else if(ui->videoCodecBox->currentIndex() == 7 ||
             ui->videoCodecBox->currentIndex() == 8)
@@ -514,6 +971,9 @@ void VideoUI::vid_codec_interface()
         ui->videoHQLabel->setText(tr("| High Quality"));
         ui->videoEncoderDial->setRange(0, 9);
         video_qs_value.setNum(ui->videoRFSlider->value());//setting qscale value
+        ui->videoEncLevelSlider->setRange(0,20);
+        ui->videoEncLevelSlider->setValue(0);
+        ui->videoEncLevelSlider->setSliderPosition(0);
     }
     else if(ui->videoCodecBox->currentIndex() == 9)
     {
@@ -532,6 +992,9 @@ void VideoUI::vid_codec_interface()
         ui->videoEncoderDial->setToolTip(tr("default: Speed 4 Encoding"));
         ui->videoDialPreset->setText(tr("Speed 4"));//default value
         video_qs_value.setNum(ui->videoRFSlider->value());//setting qp value
+        ui->videoEncLevelSlider->setRange(0,20);
+        ui->videoEncLevelSlider->setValue(0);
+        ui->videoEncLevelSlider->setSliderPosition(0);
     }
     else
     {
@@ -547,6 +1010,9 @@ void VideoUI::vid_codec_interface()
         ui->videoEncoderDial->setRange(0, 9);
         ui->videoEncoderDial->setToolTip(tr("default: medium encoding"));
         ui->videoDialPreset->setText(tr("medium"));//default value
+        ui->videoEncLevelSlider->setRange(0,20);
+        ui->videoEncLevelSlider->setValue(0);
+        ui->videoEncLevelSlider->setSliderPosition(0);
     }
 }
 
