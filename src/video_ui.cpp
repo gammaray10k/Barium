@@ -43,8 +43,8 @@ VideoUI::VideoUI(QWidget *parent) :
             this, &VideoUI::select_aspect_rat);
     connect(ui->videoFPSBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &VideoUI::select_vid_fps);
-    connect(ui->videoMotionESTBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &VideoUI::select_motion_est);
+    connect(ui->videoEncProfileBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &VideoUI::select_encoder_profile);
     //-------------------------------------------------------------------------
 
 
@@ -120,12 +120,12 @@ VideoUI::VideoUI(QWidget *parent) :
     ui->videoFPSBox->insertItems(2, videoFPSList);
     //ui->videoFPSBox->setCurrentIndex(5);--->test, it works!
 
-    //video motion estimation method/motion est
-    ui->videoMotionESTBox->insertItem(0, "Default");
-    ui->videoMotionESTBox->insertSeparator(1);
-    videoMotESTList << "ME_DIA" << "ME_HEX" << "ME_UMH" << "ME_ESA" << "ME_TESA";
-    ui->videoMotionESTBox->insertItems(2, videoMotESTList);
-    ui->videoMotionESTBox->setToolTip(tr("Default = ME_DIA"));
+    //video encoder profile
+    ui->videoEncProfileBox->insertItem(0, "Auto");
+    ui->videoEncProfileBox->insertSeparator(1);
+    videoEncProfileList << "Baseline" << "Main" << "High";
+    ui->videoEncProfileBox->insertItems(2, videoEncProfileList);
+    ui->videoEncProfileBox->setToolTip(tr("Default = Auto"));
 
     //video average bitrate
     ui->videoAVGBitRadio->setText(tr("Avg Bitrate (Kbps)"));
@@ -402,20 +402,20 @@ void VideoUI::select_encoder_level()
         //x264
         if(ui->videoCodecBox->currentIndex() == 2)
         {
-            ui->videoEncLevelDisplay->setText("1");
-            enc_level = "1";
+            ui->videoEncLevelDisplay->setText("1.0");
+            enc_level = "1.0";
         }
         //x265
         else if(ui->videoCodecBox->currentIndex() == 3)
         {
-            ui->videoEncLevelDisplay->setText("1");
-            enc_level = "1";
+            ui->videoEncLevelDisplay->setText("1.0");
+            enc_level = "1.0";
         }
         else
         {
             //every other codec
-            ui->videoEncLevelDisplay->setText("1");
-            enc_level = "1";
+            ui->videoEncLevelDisplay->setText("1.0");
+            enc_level = "1.0";
         }
     }
     if(ui->videoEncLevelSlider->value() == 2 &&
@@ -430,8 +430,8 @@ void VideoUI::select_encoder_level()
         //x265
         else if(ui->videoCodecBox->currentIndex() == 3)
         {
-            ui->videoEncLevelDisplay->setText("2");
-            enc_level = "2";
+            ui->videoEncLevelDisplay->setText("2.0");
+            enc_level = "2.0";
         }
         else
         {
@@ -512,20 +512,20 @@ void VideoUI::select_encoder_level()
         //x264
         if(ui->videoCodecBox->currentIndex() == 2)
         {
-            ui->videoEncLevelDisplay->setText("2");
-            enc_level = "2";
+            ui->videoEncLevelDisplay->setText("2.0");
+            enc_level = "2.0";
         }
         //x265
         else if(ui->videoCodecBox->currentIndex() == 3)
         {
-            ui->videoEncLevelDisplay->setText("4");
-            enc_level = "4";
+            ui->videoEncLevelDisplay->setText("4.0");
+            enc_level = "4.0";
         }
         else
         {
             //every other codec
-            ui->videoEncLevelDisplay->setText("2");
-            enc_level = "2";
+            ui->videoEncLevelDisplay->setText("2.0");
+            enc_level = "2.0";
         }
     }
     if(ui->videoEncLevelSlider->value() == 7 &&
@@ -562,8 +562,8 @@ void VideoUI::select_encoder_level()
         //x265
         else if(ui->videoCodecBox->currentIndex() == 3)
         {
-            ui->videoEncLevelDisplay->setText("5");
-            enc_level = "5";
+            ui->videoEncLevelDisplay->setText("5.0");
+            enc_level = "5.0";
         }
         else
         {
@@ -578,8 +578,8 @@ void VideoUI::select_encoder_level()
         //x264
         if(ui->videoCodecBox->currentIndex() == 2)
         {
-            ui->videoEncLevelDisplay->setText("3");
-            enc_level = "3";
+            ui->videoEncLevelDisplay->setText("3.0");
+            enc_level = "3.0";
         }
         //x265
         else if(ui->videoCodecBox->currentIndex() == 3)
@@ -590,8 +590,8 @@ void VideoUI::select_encoder_level()
         else
         {
             //every other codec
-            ui->videoEncLevelDisplay->setText("3");
-            enc_level = "3";
+            ui->videoEncLevelDisplay->setText("3.0");
+            enc_level = "3.0";
         }
     }
     if(ui->videoEncLevelSlider->value() == 10 &&
@@ -628,8 +628,8 @@ void VideoUI::select_encoder_level()
         //x265
         else if(ui->videoCodecBox->currentIndex() == 3)
         {
-            ui->videoEncLevelDisplay->setText("6");
-            enc_level = "6";
+            ui->videoEncLevelDisplay->setText("6.0");
+            enc_level = "6.0";
         }
         else
         {
@@ -644,8 +644,8 @@ void VideoUI::select_encoder_level()
         //x264
         if(ui->videoCodecBox->currentIndex() == 2)
         {
-            ui->videoEncLevelDisplay->setText("4");
-            enc_level = "4";
+            ui->videoEncLevelDisplay->setText("4.0");
+            enc_level = "4.0";
         }
         //x265
         else if(ui->videoCodecBox->currentIndex() == 3)
@@ -656,8 +656,8 @@ void VideoUI::select_encoder_level()
         else
         {
             //every other codec
-            ui->videoEncLevelDisplay->setText("4");
-            enc_level = "4";
+            ui->videoEncLevelDisplay->setText("4.0");
+            enc_level = "4.0";
         }
     }
     if(ui->videoEncLevelSlider->value() == 13 &&
@@ -704,14 +704,14 @@ void VideoUI::select_encoder_level()
         //x264
         if(ui->videoCodecBox->currentIndex() == 2)
         {
-            ui->videoEncLevelDisplay->setText("5");
-            enc_level = "5";
+            ui->videoEncLevelDisplay->setText("5.0");
+            enc_level = "5.0";
         }
         else
         {
             //every other codec
-            ui->videoEncLevelDisplay->setText("5");
-            enc_level = "5";
+            ui->videoEncLevelDisplay->setText("5.0");
+            enc_level = "5.0";
         }
     }
     if(ui->videoEncLevelSlider->value() == 16 &&
@@ -752,14 +752,14 @@ void VideoUI::select_encoder_level()
         //x264
         if(ui->videoCodecBox->currentIndex() == 2)
         {
-            ui->videoEncLevelDisplay->setText("6");
-            enc_level = "6";
+            ui->videoEncLevelDisplay->setText("6.0");
+            enc_level = "6.0";
         }
         else
         {
             //every other codec
-            ui->videoEncLevelDisplay->setText("6");
-            enc_level = "6";
+            ui->videoEncLevelDisplay->setText("6.0");
+            enc_level = "6.0";
         }
     }
     if(ui->videoEncLevelSlider->value() == 19 &&
@@ -1110,38 +1110,29 @@ void VideoUI::select_vid_fps()
     }
 }
 
-void VideoUI::select_motion_est()
+void VideoUI::select_encoder_profile()
 {
-    //ME (Motion Estimate) Method/Motion EST
-    if(ui->videoMotionESTBox->currentIndex() == 0)
+    //x264 implementation
+    //encoder profle
+    if(ui->videoEncProfileBox->currentIndex() == 0)
     {
-        //default: DIA is an alias for EPZS; x264's default in FFmpeg
-        video_motion_val = "dia";
+        //default: auto default in FFmpeg
+        //ffmpeg suggests omitting encoder option to allow encoder to choose (auto)
     }
-    if(ui->videoMotionESTBox->currentIndex() == 1)
+    if(ui->videoEncProfileBox->currentIndex() == 2)
     {
-        //dia
-        video_motion_val = "dia";
+        //baseline
+        enc_profile = "baseline";
     }
-    if(ui->videoMotionESTBox->currentIndex() == 2)
+    if(ui->videoEncProfileBox->currentIndex() == 3)
     {
-        //hex
-        video_motion_val = "hex";
+        //main
+        enc_profile = "main";
     }
-    if(ui->videoMotionESTBox->currentIndex() == 3)
+    if(ui->videoEncProfileBox->currentIndex() == 4)
     {
-        //umh
-        video_motion_val = "umh";
-    }
-    if(ui->videoMotionESTBox->currentIndex() == 4)
-    {
-        //esa
-        video_motion_val = "esa";
-    }
-    if(ui->videoMotionESTBox->currentIndex() == 5)
-    {
-        //tesa
-        video_motion_val = "tesa";
+        //high
+        enc_profile = "high";
     }
 }
 

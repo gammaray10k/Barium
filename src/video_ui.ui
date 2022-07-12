@@ -131,12 +131,12 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
-          <widget class="QComboBox" name="videoMotionESTBox"/>
+          <widget class="QComboBox" name="videoEncProfileBox"/>
          </item>
          <item>
-          <widget class="QLabel" name="videoMotionESTLabel">
+          <widget class="QLabel" name="videoEncProfileLabel">
            <property name="text">
-            <string>Motion EST</string>
+            <string>Encoder Profile</string>
            </property>
           </widget>
          </item>
@@ -390,7 +390,7 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>290</x>

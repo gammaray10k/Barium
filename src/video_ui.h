@@ -36,13 +36,14 @@ private Q_SLOTS:
     void select_aspect_rat();
     void select_vid_fps();
     void select_encoder_level();
-    void select_motion_est();
+    void select_encoder_profile();
     void vid_codec_interface();
 
 private:
     QString preset{"-preset"};
     QString enc_preset{};
     QString enc_level{};
+    QString enc_profile{};
     QString crf_value{};
     QString pr_value{};
     QString video_codec{};
@@ -51,7 +52,6 @@ private:
     QString video_res_value{};
     QString vid_aspect_val{};
     QString video_fps_val{};
-    QString video_motion_val{};
     QString video_bitrate{};
     QString output_file{};
     QString vid_ext{};
@@ -63,7 +63,7 @@ private:
     QStringList videoResList{};
     QStringList videoAspecRatList{};
     QStringList videoFPSList{};
-    QStringList videoMotESTList{};
+    QStringList videoEncProfileList{};
 
     //button group
     QButtonGroup *rateOptButtons;
