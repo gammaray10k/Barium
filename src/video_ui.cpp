@@ -88,8 +88,9 @@ VideoUI::VideoUI(QWidget *parent) :
     //video codec interface
     ui->videoCodecBox->insertItem(0, "Source");
     ui->videoCodecBox->insertSeparator(1);
-    videoCodecList << "x264" << "x265" << "Xvid" << "VP9" << "Theora"
-                   << "MPEG-1" << "MPEG-2" << "RAV1E/AV1";
+    videoCodecList << "x264" << "x264 10-bit" << "x265" << "x265 10-bit"
+                   << "x265 12-bit" << "Xvid" << "VP9" << "Theora" << "MPEG-1"
+                   << "MPEG-2" << "RAV1E/AV1";
     ui->videoCodecBox->insertItems(2, videoCodecList);
 
     //video container
@@ -378,13 +379,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 0)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit
         {
             //default auto setting for ffmpeg
             ui->videoEncLevelDisplay->setText("auto");
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit
         {
             //default auto setting for ffmpeg
             ui->videoEncLevelDisplay->setText("auto");
@@ -400,13 +404,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 1)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("1.0");
             enc_level = "1.0";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("1.0");
             enc_level = "1.0";
@@ -422,13 +429,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 2)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("1b");
             enc_level = "1b";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("2.0");
             enc_level = "2.0";
@@ -444,13 +454,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 3)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("1.1");
             enc_level = "1.1";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("2.1");
             enc_level = "2.1";
@@ -466,13 +479,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 4)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("1.2");
             enc_level = "1.2";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("3");
             enc_level = "3";
@@ -488,13 +504,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 5)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("1.3");
             enc_level = "1.3";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("3.1");
             enc_level = "3.1";
@@ -510,13 +529,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 6)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("2.0");
             enc_level = "2.0";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("4.0");
             enc_level = "4.0";
@@ -532,13 +554,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 7)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("2.1");
             enc_level = "2.1";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("4.1");
             enc_level = "4.1";
@@ -554,13 +579,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 8)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("2.2");
             enc_level = "2.2";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("5.0");
             enc_level = "5.0";
@@ -576,13 +604,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 9)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("3.0");
             enc_level = "3.0";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("5.1");
             enc_level = "5.1";
@@ -598,13 +629,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 10)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("3.1");
             enc_level = "3.1";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("5.2");
             enc_level = "5.2";
@@ -620,13 +654,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 11)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("3.2");
             enc_level = "3.2";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("6.0");
             enc_level = "6.0";
@@ -642,13 +679,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 12)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("4.0");
             enc_level = "4.0";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("6.1");
             enc_level = "6.1";
@@ -664,13 +704,16 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 13)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("4.1");
             enc_level = "4.1";
         }
         //x265
-        else if(ui->videoCodecBox->currentIndex() == 3)
+        else if(ui->videoCodecBox->currentIndex() == 4 ||
+                ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+                ui->videoCodecBox->currentIndex() == 6) //x265 12bit)
         {
             ui->videoEncLevelDisplay->setText("6.2");
             enc_level = "6.2";
@@ -686,7 +729,8 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 14)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("4.2");
             enc_level = "4.2";
@@ -702,7 +746,8 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 15)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("5.0");
             enc_level = "5.0";
@@ -718,7 +763,8 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 16)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("5.1");
             enc_level = "5.1";
@@ -734,7 +780,8 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 17)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("5.2");
             enc_level = "5.2";
@@ -750,7 +797,8 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 18)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("6.0");
             enc_level = "6.0";
@@ -766,7 +814,8 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 19)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("6.1");
             enc_level = "6.1";
@@ -782,7 +831,8 @@ void VideoUI::select_encoder_level()
             ui->videoEncLevelSlider->sliderPosition() == 20)
     {
         //x264
-        if(ui->videoCodecBox->currentIndex() == 2)
+        if(ui->videoCodecBox->currentIndex() == 2 ||
+                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("6.2");
             enc_level = "6.2";
@@ -818,7 +868,6 @@ void VideoUI::select_vid_codec()
     {
         //copy
         video_codec = "copy";
-
     }
     if(ui->videoCodecBox->currentIndex() == 2)
     {
@@ -827,35 +876,53 @@ void VideoUI::select_vid_codec()
     }
     if(ui->videoCodecBox->currentIndex() == 3)
     {
+        //x264 10bit
+        video_codec = "libx264";
+        pixel_format[1] = "yuv420p10le";
+    }
+    if(ui->videoCodecBox->currentIndex() == 4)
+    {
         //x265
         video_codec = "libx265";
     }
-    if(ui->videoCodecBox->currentIndex() == 4)
+    if(ui->videoCodecBox->currentIndex() == 5)
+    {
+        //x265 10bit
+        video_codec = "libx265";
+        pixel_format[1] = "yuv444p10le";
+    }
+    if(ui->videoCodecBox->currentIndex() == 6)
+    {
+        //x265 12bit
+        video_codec = "libx265";
+        pixel_format[1] = "yuv444p12le";
+    }
+    if(ui->videoCodecBox->currentIndex() == 7)
     {
         //Xvid
         video_codec = "libxvid";
     }
-    if(ui->videoCodecBox->currentIndex() == 5)
+    if(ui->videoCodecBox->currentIndex() == 8)
     {
         //vp9
         video_codec = "libvpx-vp9";
     }
-    if(ui->videoCodecBox->currentIndex() == 6)
+    if(ui->videoCodecBox->currentIndex() == 9)
     {
         //theora
         video_codec = "libtheora";
     }
-    if(ui->videoCodecBox->currentIndex() == 7)
+    if(ui->videoCodecBox->currentIndex() == 10)
     {
         //MPEG-1
         video_codec = "mpeg1video";
     }
-    if(ui->videoCodecBox->currentIndex() == 8)
+    if(ui->videoCodecBox->currentIndex() == 11)
     {
         //MPEG-2
         video_codec = "mpeg2video";
     }
-    if(ui->videoCodecBox->currentIndex() == 9)
+    if(ui->videoCodecBox->currentIndex() == 12)
     {
         //rav1e
         video_codec = "librav1e";
@@ -869,15 +936,25 @@ void VideoUI::select_vid_codec()
 void VideoUI::vid_codec_interface()
 {
     //video codec interface settings
-    if(ui->videoCodecBox->currentIndex() == 2)
+    if(ui->videoCodecBox->currentIndex() == 2 ||
+            ui->videoCodecBox->currentIndex() == 3)//x264 10bit
     {
         //default libx264 crf value is 23
         ui->videoCRFRadio->setText(tr("Constant Rate Factor"));
         ui->videoRFSpinBox->setRange(0, 51);
         ui->videoRFSlider->setRange(0, 51);
-        ui->videoRFSlider->setValue(23);
-        ui->videoRFSpinBox->setValue(23);
-        ui->videoRFSlider->setSliderPosition(23);
+        if(ui->videoCodecBox->currentIndex() == 2)
+        {
+            ui->videoRFSlider->setValue(23);
+            ui->videoRFSpinBox->setValue(23);
+            ui->videoRFSlider->setSliderPosition(23);
+        }
+        if(ui->videoCodecBox->currentIndex() == 3)
+        {
+            ui->videoRFSlider->setValue(20);
+            ui->videoRFSpinBox->setValue(20);
+            ui->videoRFSlider->setSliderPosition(20);
+        }
         ui->videoLQLabel->setText(tr("Low Quality |"));
         ui->videoHQLabel->setText(tr("| High Quality"));
         ui->videoEncoderDial->setRange(0, 9);
@@ -885,15 +962,27 @@ void VideoUI::vid_codec_interface()
         ui->videoEncLevelSlider->setValue(0);
         ui->videoEncLevelSlider->setSliderPosition(0);
     }
-    else if(ui->videoCodecBox->currentIndex() == 3)
+    else if(ui->videoCodecBox->currentIndex() == 4 ||
+            ui->videoCodecBox->currentIndex() == 5 || //x265 10bit
+            ui->videoCodecBox->currentIndex() == 6) //x265 12bit
     {
         //default libx265 crf value is 28
         ui->videoCRFRadio->setText(tr("Constant Rate Factor"));
         ui->videoRFSpinBox->setRange(0, 51);
         ui->videoRFSlider->setRange(0, 51);
-        ui->videoRFSlider->setValue(28);
-        ui->videoRFSpinBox->setValue(28);
-        ui->videoRFSlider->setSliderPosition(28);
+        if(ui->videoCodecBox->currentIndex() == 4)
+        {
+            ui->videoRFSlider->setValue(28);
+            ui->videoRFSpinBox->setValue(28);
+            ui->videoRFSlider->setSliderPosition(28);
+        }
+        if(ui->videoCodecBox->currentIndex() == 5 ||//x265 10bit
+           ui->videoCodecBox->currentIndex() == 6) //x265 12bit
+        {
+            ui->videoRFSlider->setValue(20);
+            ui->videoRFSpinBox->setValue(20);
+            ui->videoRFSlider->setSliderPosition(20);
+        }
         ui->videoLQLabel->setText(tr("Low Quality |"));
         ui->videoHQLabel->setText(tr("| High Quality"));
         ui->videoEncoderDial->setRange(0, 9);
@@ -901,7 +990,7 @@ void VideoUI::vid_codec_interface()
         ui->videoEncLevelSlider->setValue(0);
         ui->videoEncLevelSlider->setSliderPosition(0);
     }
-    else if(ui->videoCodecBox->currentIndex() == 4)
+    else if(ui->videoCodecBox->currentIndex() == 7)
     {
         //default Xvid settings
         ui->videoRFSlider->setTickPosition(QSlider::TicksBelow);
@@ -919,7 +1008,7 @@ void VideoUI::vid_codec_interface()
         ui->videoEncLevelSlider->setValue(0);
         ui->videoEncLevelSlider->setSliderPosition(0);
     }
-    else if(ui->videoCodecBox->currentIndex() == 5)
+    else if(ui->videoCodecBox->currentIndex() == 8)
     {
         //default libvpx-vp9 crf value is 31, range is 0-63
         ui->videoCRFRadio->setText(tr("Constant Rate Factor"));
@@ -936,7 +1025,7 @@ void VideoUI::vid_codec_interface()
         ui->videoEncLevelSlider->setValue(0);
         ui->videoEncLevelSlider->setSliderPosition(0);
     }
-    else if(ui->videoCodecBox->currentIndex() == 6)
+    else if(ui->videoCodecBox->currentIndex() == 9)
     {
         //default libtheora settings, range is 0-10, 10 is higest quality
         ui->videoRFSlider->setTickPosition(QSlider::TicksBelow);
@@ -955,8 +1044,8 @@ void VideoUI::vid_codec_interface()
         ui->videoEncLevelSlider->setValue(0);
         ui->videoEncLevelSlider->setSliderPosition(0);
     }
-    else if(ui->videoCodecBox->currentIndex() == 7 ||
-            ui->videoCodecBox->currentIndex() == 8)
+    else if(ui->videoCodecBox->currentIndex() == 10 ||
+            ui->videoCodecBox->currentIndex() == 11)
     {
         //default mpeg1 and mpeg2 settimgs, range is 1-31, 1 is highest
         ui->videoRFSlider->setTickPosition(QSlider::TicksBelow);
@@ -975,7 +1064,7 @@ void VideoUI::vid_codec_interface()
         ui->videoEncLevelSlider->setValue(0);
         ui->videoEncLevelSlider->setSliderPosition(0);
     }
-    else if(ui->videoCodecBox->currentIndex() == 9)
+    else if(ui->videoCodecBox->currentIndex() == 12)
     {
         //default rav1e settings, qp range is 0-255, 0 is highest
         ui->videoRFSlider->setTickPosition(QSlider::TicksBelow);
@@ -1113,26 +1202,52 @@ void VideoUI::select_vid_fps()
 void VideoUI::select_encoder_profile()
 {
     //x264 implementation
-    //encoder profle
-    if(ui->videoEncProfileBox->currentIndex() == 0)
+    if(ui->videoCodecBox->currentIndex() == 2)
     {
-        //default: auto default in FFmpeg
-        //ffmpeg suggests omitting encoder option to allow encoder to choose (auto)
+        if(ui->videoEncProfileBox->currentIndex() == 0)
+        {
+            //default: auto default in FFmpeg
+            //ffmpeg suggests omitting encoder option to allow encoder to choose (auto)
+        }
+        if(ui->videoEncProfileBox->currentIndex() == 2)
+        {
+            //baseline
+            enc_profile = "baseline";
+        }
+        if(ui->videoEncProfileBox->currentIndex() == 3)
+        {
+            //main
+            enc_profile = "main";
+        }
+        if(ui->videoEncProfileBox->currentIndex() == 4)
+        {
+            //high
+            enc_profile = "high";
+        }
     }
-    if(ui->videoEncProfileBox->currentIndex() == 2)
+    if(ui->videoCodecBox->currentIndex() == 3)
     {
-        //baseline
-        enc_profile = "baseline";
-    }
-    if(ui->videoEncProfileBox->currentIndex() == 3)
-    {
-        //main
-        enc_profile = "main";
-    }
-    if(ui->videoEncProfileBox->currentIndex() == 4)
-    {
-        //high
-        enc_profile = "high";
+        //x264 10 bit implementation
+        if(ui->videoEncProfileBox->currentIndex() == 0)
+        {
+            //default: auto - default in FFmpeg
+            //ffmpeg suggests omitting encoder option to allow encoder to choose
+        }
+        if(ui->videoEncProfileBox->currentIndex() == 2)
+        {
+            //baseline
+            enc_profile = "baseline";
+        }
+        if(ui->videoEncProfileBox->currentIndex() == 3)
+        {
+            //main
+            enc_profile = "main";
+        }
+        if(ui->videoEncProfileBox->currentIndex() == 4)
+        {
+            //high
+            enc_profile = "high";
+        }
     }
 }
 

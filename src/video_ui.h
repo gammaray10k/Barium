@@ -64,6 +64,7 @@ private:
     QStringList videoAspecRatList{};
     QStringList videoFPSList{};
     QStringList videoEncProfileList{};
+    QStringList pixel_format{"-pix_fmt", "yuv420p"};
 
     //button group
     QButtonGroup *rateOptButtons;
