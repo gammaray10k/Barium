@@ -374,13 +374,13 @@ void VideoUI::encoder_preset()
 //initializing selected encoder level
 void VideoUI::select_encoder_level()
 {
-    //x264 settings
+    //encoder level settings
     if(ui->videoEncLevelSlider->value() == 0 &&
             ui->videoEncLevelSlider->sliderPosition() == 0)
     {
         //x264
         if(ui->videoCodecBox->currentIndex() == 2 ||
-                ui->videoCodecBox->currentIndex() == 3)//x264 10bit
+           ui->videoCodecBox->currentIndex() == 3)//x264 10bit
         {
             //default auto setting for ffmpeg
             ui->videoEncLevelDisplay->setText("auto");
@@ -705,7 +705,7 @@ void VideoUI::select_encoder_level()
     {
         //x264
         if(ui->videoCodecBox->currentIndex() == 2 ||
-                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
+           ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("4.1");
             enc_level = "4.1";
@@ -730,7 +730,7 @@ void VideoUI::select_encoder_level()
     {
         //x264
         if(ui->videoCodecBox->currentIndex() == 2 ||
-                ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
+           ui->videoCodecBox->currentIndex() == 3)//x264 10bit)
         {
             ui->videoEncLevelDisplay->setText("4.2");
             enc_level = "4.2";
@@ -743,7 +743,7 @@ void VideoUI::select_encoder_level()
         }
     }
     if(ui->videoEncLevelSlider->value() == 15 &&
-            ui->videoEncLevelSlider->sliderPosition() == 15)
+       ui->videoEncLevelSlider->sliderPosition() == 15)
     {
         //x264
         if(ui->videoCodecBox->currentIndex() == 2 ||

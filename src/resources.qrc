@@ -10,5 +10,6 @@
     <file>resources/pngkit_song-icon-png_900x900.png</file>
     <file>resources/space_765058_96x96.png</file>
     <file>resources/drive-harddisk_px16.png</file>
+    <file>resources/hd_16px.png</file>
   </qresource>
 </RCC>
